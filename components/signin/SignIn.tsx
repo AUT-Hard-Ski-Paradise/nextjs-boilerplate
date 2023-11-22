@@ -115,8 +115,8 @@ export const SignIn: React.FC<Props> = (props) => {
             })
         // Prevent the default submit and page reload
         e.preventDefault()
-        setLoginMessage("Successful login! You will be redirected back to the main page shortly.")
-        window.location.replace('/');
+        setLoginMessage("Successful login! Go to the homepage!")
+        // window.location.replace('/');
 
     }
 

@@ -4,31 +4,34 @@ import {SkiParadiseNavbar} from "@/components/navbar/SkiParadiseNavbar";
 import {SkisList} from "@/components/skis/SkisList";
 import {useCallback, useEffect, useState} from "react";
 import axios from "axios";
-import {HealthResponse} from "@/types";
+import {HealthResponse, User} from "@/types";
+import {isNull} from "util";
 export default function SkiParadiseWebMain() {
-    const [healthCheck, setHealthCheck] = useState<string>();
+    const [user, setUser] = useState<User>();
+    const [loaded, setLoaded] = useState(Boolean);
 
     const fetchUserAuth = useCallback(async () => {
-        const { data: healthResponse } =
-            await axios.get<HealthResponse>(
+        const { data: userResponse } =
+            await axios.get<User>(
                 `http://localhost:8080/api/auth`, {withCredentials: true}
-            );
-        console.log(healthResponse)
+            ).catch();
         // @ts-ignore
-        setHealthCheck(healthResponse);
+        setUser(userResponse);
     }, []);
 
     useEffect(() => {
-        void fetchUserAuth();
+        if (!loaded){
+            void fetchUserAuth();
+        }
     }, [fetchUserAuth]);
 
     return (
             <Box>
                 <Container size="1">
-                    <SkiParadiseNavbar/>
+                    <SkiParadiseNavbar isLogged={isNull(user)} permission={user?.permission}/>
                 </Container>
                 <Container size="4">
-                    <Heading align={"center"}>Ski Resort</Heading>
+                    <Heading align={"center"}>Ski Resort {user?.full_name}</Heading>
                     <SkisList/>
                 </Container>
         </Box>
