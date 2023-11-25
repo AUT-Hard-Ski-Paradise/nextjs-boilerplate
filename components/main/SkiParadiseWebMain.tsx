@@ -1,7 +1,7 @@
 "use client"
 import {Flex, Text, Button, Box, Container, Link, Grid, Heading} from '@radix-ui/themes';
 import {SkiParadiseNavbar} from "@/components/navbar/SkiParadiseNavbar";
-import {SkisList} from "@/components/skis/SkisList";
+import {LiftList} from "@/components/lifts/LiftList";
 import {useCallback, useEffect, useState} from "react";
 import axios from "axios";
 import {HealthResponse, User} from "@/types";
@@ -30,9 +30,11 @@ export default function SkiParadiseWebMain() {
                 <Container size="1">
                     <SkiParadiseNavbar isLogged={isNull(user)} permission={user?.permission}/>
                 </Container>
+                <Flex gap="3" align="center" style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                    <Text size={"9"} align={"center"}>Ski Resort</Text>
+                </Flex>
                 <Container size="4">
-                    <Heading align={"center"}>Ski Resort {user?.full_name}</Heading>
-                    <SkisList/>
+                    <LiftList/>
                 </Container>
         </Box>
 

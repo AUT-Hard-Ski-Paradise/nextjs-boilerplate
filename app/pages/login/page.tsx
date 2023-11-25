@@ -1,6 +1,6 @@
 import {Box, Container, Flex, Heading, Text} from "@radix-ui/themes";
 import {SkiParadiseNavbar} from "@/components/navbar/SkiParadiseNavbar";
-import {SkisList} from "@/components/skis/SkisList";
+import {LiftList} from "@/components/lifts/LiftList";
 import {SignIn} from "@/components/signin/SignIn";
 
 export default function Page() {
