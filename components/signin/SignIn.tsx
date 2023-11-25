@@ -27,7 +27,7 @@ export const SignIn: React.FC<Props> = (props) => {
     const fetchUserAuth = useCallback(async () => {
         const { data: healthResponse } =
             await axios.get<HealthResponse>(
-                `http://localhost:8080/api/auth`, {withCredentials: true}
+                `http://localhost:8085/api/auth`, {withCredentials: true}
             );
         console.log(healthResponse)
         // @ts-ignore

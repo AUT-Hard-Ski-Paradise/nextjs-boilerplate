@@ -13,7 +13,7 @@ export default function SkiParadiseWebMain() {
     const fetchUserAuth = useCallback(async () => {
         const { data: userResponse } =
             await axios.get<User>(
-                `http://localhost:8080/api/auth`, {withCredentials: true}
+                `http://localhost:8085/api/auth`, {withCredentials: true}
             ).catch();
         // @ts-ignore
         setUser(userResponse);
