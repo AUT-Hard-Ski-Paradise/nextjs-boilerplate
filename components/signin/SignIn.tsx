@@ -92,7 +92,7 @@ export const SignIn: React.FC<Props> = (props) => {
 
         // Handle validations
         axios
-            .post("http://localhost:8080/api/register", {username, password, full_name, email})
+            .post("http://localhost:8085/api/register", {username, password, full_name, email})
             .then(response => {
                 console.log(response)
                 // Handle response
@@ -106,7 +106,7 @@ export const SignIn: React.FC<Props> = (props) => {
 
         // Handle validations
         axios
-            .post("http://localhost:8080/api/login", {username, password}, {withCredentials: true})
+            .post("http://localhost:8085/api/login", {username, password}, {withCredentials: true})
             .then(response => {
                 console.log(response)
                 console.log(healthCheck)

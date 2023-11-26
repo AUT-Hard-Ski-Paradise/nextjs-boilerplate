@@ -20,35 +20,17 @@ export const Profile: React.FC<Props> = (props) => {
                 `http://localhost:8085/api/auth`, {withCredentials: true}
             ).catch();
         setUser(userResponse);
-        if (user==undefined){
-            console.log("gatyaaaaa")
+        if (user?.username==undefined){
             // window.location.replace("/")
         }
         setLoaded(true)
     }, []);
 
     useEffect(() => {
-        if (!loaded){
-            console.log("xdd")
             void fetchUserAuth();
-        }
+
     }, [fetchUserAuth]);
 
-    // const getCookie = (name: string) => {
-    //     return document.cookie.split(';').some(c => {
-    //         return c.trim().startsWith(name + '=');
-    //     });
-    // }
-    // const deleteCookie = (name: string, path: string, domain: string) => {
-    //     if (getCookie(name)) {
-    //         document.cookie = name + "=" +
-    //             ((path) ? ";path=" + path : "") +
-    //             ((domain) ? ";domain=" + domain : "") +
-    //             ";expires=Thu, 01 Jan 1970 00:00:01 GMT";
-    //     }
-    // }
-
-    // deleteCookie("jwt","/api",window.location.hostname)
 
     function delete_cookie(name: string) {
         document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
@@ -57,21 +39,16 @@ export const Profile: React.FC<Props> = (props) => {
 
         // Handle validations
         axios
-            .post("http://localhost:8080/api/logout",{withCredentials: true, headers:{"Content-Type":"application/json"}} )
+            .post("http://localhost:8085/api/logout",{withCredentials: true, headers:{"Content-Type":"application/json"}} )
             .then(response => {
                 console.log(response)
                 setLoaded(false)
                 // console.log(window.location.hostname)
                 // Handle response
             })
-        // Prevent the default submit and page reload
-        // e.preventDefault()
-        // setUser(undefined)
+
         setLoaded(false)
         delete_cookie("jwt")
-        // deleteCookie([][],"jwt")
-        // localStorage.clear()
-        // window.location.replace("/")
 
     }
 
@@ -87,7 +64,7 @@ export const Profile: React.FC<Props> = (props) => {
                 <Text>{user?.email}</Text>
             </Flex>
             <Flex gap="3" align="center" style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-            <Button id={"logoutSubmit"} onClick={handleLogoutSubmit} formAction={"auth"}>Logout</Button>
+            <Button id={"logoutSubmit"} onClick={handleLogoutSubmit} >Logout</Button>
             </Flex>
 
         </Card>

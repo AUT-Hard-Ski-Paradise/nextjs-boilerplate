@@ -8,6 +8,7 @@ import {HealthResponse, User} from "@/types";
 import {isNull} from "util";
 export default function SkiParadiseWebMain() {
     const [user, setUser] = useState<User>();
+    const [isLogged, setIsLogged] = useState(Boolean);
     const [loaded, setLoaded] = useState(Boolean);
 
     const fetchUserAuth = useCallback(async () => {
@@ -17,18 +18,21 @@ export default function SkiParadiseWebMain() {
             ).catch();
         // @ts-ignore
         setUser(userResponse);
+        console.log("asdasdasd: "+userResponse.username)
+        if (userResponse.username!=undefined){
+            setIsLogged(true);
+        }
+
     }, []);
 
     useEffect(() => {
-        if (!loaded){
             void fetchUserAuth();
-        }
     }, [fetchUserAuth]);
 
     return (
             <Box>
                 <Container size="1">
-                    <SkiParadiseNavbar isLogged={isNull(user)} permission={user?.permission}/>
+                    <SkiParadiseNavbar isLogged={isLogged} permission={user?.permission}/>
                 </Container>
                 <Flex gap="3" align="center" style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
                     <Text size={"9"} align={"center"}>Ski Resort</Text>
