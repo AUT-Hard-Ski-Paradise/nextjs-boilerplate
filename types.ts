@@ -10,8 +10,12 @@ export interface User{
     username: string;
 }
 
-export interface pusherResponse{
+export interface pusherLiftsResponse {
     message: LiftOperators
+}
+
+export interface pusherErrorsResponse {
+    message: ErrorMessage
 }
 
 export interface LiftOperators{
@@ -27,4 +31,18 @@ export interface Operators{
     throughput: number,
     queue_size: number,
     wind_speed: number,
+}
+
+export interface LiftControlMessage{
+    id: number,
+    opcode: number,
+    description: string
+}
+
+export interface ErrorMessage{
+    id:number,
+    message:string,
+    type:number,
+    severity:string,
+
 }

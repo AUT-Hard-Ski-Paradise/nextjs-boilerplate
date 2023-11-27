@@ -7,7 +7,7 @@ export default function Page() {
     return (
         <Box>
             <Container size="1">
-                <SkiParadiseNavbar/>
+                <SkiParadiseNavbar isLogged/>
             </Container>
             <Container size="1">
                 <Flex gap="3" align="center" style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
